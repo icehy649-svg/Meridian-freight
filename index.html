@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meridian Freight – Your cargo, our priority</title>
+<link rel="icon" href="/img/logo.jpg">
+<style>
+:root{--bg:#E8EEF1;--panel:#fff;--ink:#10242C;--mute:#5B6E77;--line:#CBD7DD;--accent:#F2B705;--on:#10242C;--route:#1F6FEB;--ok:#1E8A5A;--bad:#C0392B;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1A20;--panel:#13262E;--ink:#E8EEF1;--mute:#91A5AE;--line:#264049;--route:#5B9BFF;--ok:#4CC38A;--bad:#FF7A6B}}
+:root[data-theme="dark"]{--bg:#0C1A20;--panel:#13262E;--ink:#E8EEF1;--mute:#91A5AE;--line:#264049;--route:#5B9BFF;--ok:#4CC38A;--bad:#FF7A6B}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif}
+h1,h2,h3,.logo{font-family:"Archivo","Arial Narrow",Arial,sans-serif;margin:0;letter-spacing:-.01em}
+.wrap{max-width:960px;margin:0 auto;padding:0 18px 40px}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{font-weight:800;font-size:21px}.logo i{display:inline-block;width:13px;height:13px;background:var(--accent);margin-right:8px;transform:rotate(45deg)}
+.tabs{display:flex;gap:6px}
+.tabs button{background:transparent;border:2px solid var(--line);color:var(--ink)}
+.tabs button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+h1{font-weight:800;font-size:clamp(34px,7vw,60px);line-height:1;max-width:14ch;margin:20px 0 12px}
+.mute{color:var(--mute)}
+input,select,textarea,button{font:inherit;color:var(--ink)}
+input,select,textarea{background:var(--panel);border:2px solid var(--line);border-radius:6px;padding:11px 12px;width:100%;min-width:0}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--route);outline-offset:1px}
+button{background:var(--accent);color:var(--on);border:0;border-radius:6px;padding:11px 18px;font-weight:500;cursor:pointer}
+button.ghost{background:transparent;border:2px solid var(--line);color:var(--ink)}
+button.danger{background:transparent;border:2px solid var(--bad);color:var(--bad)}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row input{flex:1 1 200px;text-transform:uppercase;font-weight:500}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;margin-top:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-weight:500;font-size:14px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;background:var(--accent);color:var(--on);font-weight:500;font-size:14px}
+.badge.done{background:var(--ok);color:#fff}.badge.late{background:var(--bad);color:#fff}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin:14px 0}.bar span{display:block;height:100%;background:var(--route)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.facts div{border-left:3px solid var(--accent);padding-left:10px}.facts small{display:block;color:var(--mute)}.facts strong{font-size:17px}
+ol{list-style:none;margin:16px 0 0;padding:0}
+li{padding:6px 0 6px 20px;border-left:2px solid var(--line);margin-left:5px;position:relative}
+li:before{content:"";position:absolute;left:-7px;top:12px;width:12px;height:12px;border-radius:50%;background:var(--route)}
+li small{display:block;color:var(--mute)}
+.err{color:var(--bad);margin-top:10px}.ok{color:var(--ok);margin-top:10px}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+td,th{text-align:left;padding:10px 6px;border-bottom:1px solid var(--line);font-size:15px}
+tr.pick{cursor:pointer}tr.pick:hover{background:var(--bg)}
+.scroll{overflow-x:auto}
+.lbl{border:2px dashed var(--line);border-radius:8px;padding:14px;margin-top:14px;background:#fff;color:#000}.lbl h2{color:#000}
+@media print{body *{visibility:hidden}#label,#label *{visibility:visible}#label{position:absolute;left:0;top:0;width:100%;border:3px solid #000}}
+[hidden]{display:none!important}
+
+:root{--bg:#F4F1F9;--ink:#1A0F3C;--mute:#5E5A73;--line:#DDD6EA;--accent:#FDB913;--route:#6B2FB5}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#120A25;--panel:#1D1238;--ink:#F1ECFA;--mute:#A79FC0;--line:#35285A;--route:#B08CFF}}
+:root[data-theme="dark"]{--bg:#120A25;--panel:#1D1238;--ink:#F1ECFA;--mute:#A79FC0;--line:#35285A;--route:#B08CFF}
+header.top{display:block;padding:0;background:#0B0618;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.hb{max-width:1000px;margin:0 auto;padding:8px 18px;display:flex;align-items:center;gap:6px 18px;flex-wrap:wrap;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font:800 19px Archivo,Arial,sans-serif}.brand img{border-radius:8px}
+header.top nav{display:flex;gap:2px 14px;flex-wrap:wrap}header.top nav a{color:#E6DFF5;margin:0;font-size:15px}
+html{scroll-padding-top:110px}#track{position:relative;z-index:1}#tid::placeholder{text-transform:none}header.top nav a{text-decoration:none}header.top nav a:hover{text-decoration:underline}
+.hero{display:block;width:100%;height:auto;max-height:600px;object-fit:cover}
+#track h1{font-size:clamp(26px,5vw,40px);max-width:none;margin:0 0 6px}
+.goals,.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:16px}.goals h3{margin-bottom:4px}.goals p{margin:0;color:var(--mute)}
+.rev{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}.rev p{margin:6px 0}
+.founder{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.founder img{width:140px;height:140px;border-radius:50%;object-fit:cover;object-position:center 25%}
+.rate{border-top:1px solid var(--line);margin-top:16px;padding-top:14px}
+.star{background:none;border:0;font-size:30px;line-height:1;padding:2px 4px;color:var(--line)}.star.on{color:var(--accent)}
+</style>
+</head>
+<body>
+<header class="top"><div class="hb"><a class="brand" href="#home"><img src="/img/logo.jpg" alt="" width="40" height="40"><span>Meridian Freight</span></a><nav aria-label="Main"><a href="#track">Track</a><a href="#price">Price</a><a href="#about">About</a><a href="#mission">Mission</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a></nav></div></header>
+<div id="vSite">
+<img id="home" class="hero" src="/img/hero.jpg" alt="Meridian Freight truck at a warehouse loading dock at sunset" width="1600" height="800">
+<div class="wrap">
+<section id="track" class="card" style="margin-top:-40px;padding-top:20px">
+<h1>Know exactly where your freight is.</h1>
+<p class="mute">Enter your tracking number to see the latest update from our team.</p>
+<div class="row"><textarea id="tid" rows="2" placeholder="Tracking number(s), separated by commas or new lines" aria-label="Tracking numbers" style="flex:1 1 220px;text-transform:uppercase"></textarea><button id="go">Track</button></div>
+<div id="terr" class="err" role="alert"></div>
+</section>
+<div id="res" hidden></div>
+<section id="price"><div class="card" style="margin-top:0"><h3>Get a price</h3><div class="grid" style="margin-top:12px"><label>Weight (lb)<input id="qw" type="number" min="1" value="100" style="text-transform:none"></label><label>Service<select id="qs"></select></label><label>Shipping<select id="qi"><option value="0">Same country</option><option value="1">International</option></select></label></div><div class="row" style="margin-top:12px;align-items:center"><button id="qb">Get price</button><strong id="qr"></strong></div></div></section>
+<section id="about"><h2>About Meridian Freight</h2>
+<p style="max-width:62ch">Meridian Freight moves goods by road with our own trucks and couriers, supported by trusted local agents who handle pickups and deliveries in the regions we serve. One team stays accountable for every shipment, so you always know where your cargo is.</p>
+<div class="card founder"><img src="/img/owner.jpg" alt="Portrait of the owner of Meridian Freight" width="140" height="140"><div><p style="margin:0 0 8px;font-size:18px">“Your cargo is our priority, from the first pickup to the final delivery.”</p><strong>[Your name]</strong><div class="mute">[Your title], Meridian Freight</div></div></div></section>
+<section id="mission"><h2>Our mission</h2>
+<p style="max-width:62ch">To move our customers' cargo safely and on time, and to keep them informed at every step of the journey.</p>
+<div class="goals"><div><h3>Safe and secure cargo</h3><p>Careful loading, handling and handover, with the receiver's name recorded on every delivery.</p></div><div><h3>On-time delivery</h3><p>Realistic delivery dates, and honest updates when something changes.</p></div><div><h3>Wide coverage</h3><p>Our own fleet and trusted agents carry freight across cities and beyond.</p></div><div><h3>Dedicated support</h3><p>A real team that answers your questions about your shipment.</p></div></div></section>
+<section id="reviews"><h2>What customers say</h2><p id="ravg" class="mute"></p><div id="rgrid" class="revs"></div></section>
+<section id="contact"><h2>Contact us</h2><div class="card" style="margin-top:12px"><p style="margin:0">Email: [your email]<br>Phone: [your phone number]<br>Office: [your office address]</p></div></section>
+<footer>© 2026 Meridian Freight. <a href="#staff" id="staff" style="color:inherit">Staff login</a></footer>
+</div></div>
+<div class="wrap">
+<div id="vAdmin" hidden>
+<div id="login" class="card" hidden><h3>Staff sign in</h3><label style="margin-top:12px">Password<input id="pw" type="password" autocomplete="current-password" style="text-transform:none"></label><div class="row" style="margin-top:12px"><button id="li">Sign in</button></div><div id="lerr" class="err"></div></div>
+<div id="adm" hidden><div class="row" style="justify-content:space-between;align-items:center;margin-top:20px"><h2>Admin</h2><button id="lo" class="ghost">Sign out</button></div>
+<p class="mute">Changes show to customers right away.</p>
+<p id="mnote" class="err" hidden>Email alerts are off. Set RESEND_API_KEY and EMAIL_FROM on the server to turn them on.</p>
+
+<div class="card">
+<h3>New shipment</h3>
+<div class="grid" style="margin-top:12px">
+<label>Customer name<input id="nc" style="text-transform:none"></label>
+<label>Cargo description<input id="ng" style="text-transform:none" placeholder="e.g. 12 pallets of tiles"></label>
+<label>Origin<input id="no" style="text-transform:none" placeholder="City, country"></label>
+<label>Destination<input id="nd" style="text-transform:none" placeholder="City, country"></label>
+<label>Weight (lb)<input id="nw" type="number" min="1" value="100" style="text-transform:none"></label><label>Service<select id="ns"></select></label><label>Promised delivery date<input id="ne" type="date" style="text-transform:none"></label><label>Customer email (optional)<input id="nm" type="email" style="text-transform:none" placeholder="name@example.com"></label>
+</div>
+<div style="margin-top:12px"><button id="add">Create shipment</button></div>
+<div id="aerr" class="err"></div><div id="aok" class="ok"></div>
+</div>
+
+<div class="card">
+<h3>All shipments</h3>
+<div class="scroll"><table><thead><tr><th>Number</th><th>Customer</th><th>Route</th><th>Status</th></tr></thead><tbody id="list"></tbody></table></div>
+<p id="empty" class="mute" hidden>No shipments yet. Create your first one above.</p>
+</div>
+
+<div class="card"><h3>Customer ratings</h3><div id="rsum" class="mute"></div><div id="rlist"></div></div>
+<div id="edit" class="card" hidden>
+<h3 id="eh"></h3>
+<div class="grid" style="margin-top:12px">
+<label>Status<select id="es"></select></label>
+<label>Current location<input id="el" style="text-transform:none" placeholder="e.g. Rotterdam port"></label>
+<label>Destination<input id="ed" style="text-transform:none"></label>
+<label>Note for customer (optional)<input id="en" style="text-transform:none"></label>
+<label>Delivery date<input id="ee" type="date" style="text-transform:none"></label><label id="rl" hidden>Received by (name)<input id="er" style="text-transform:none"></label><label>Customer email<input id="em" type="email" style="text-transform:none"></label>
+</div>
+<label style="flex-direction:row;align-items:center;gap:8px;margin-top:12px"><input id="sm" type="checkbox" style="width:auto" checked> Email the customer about this update</label>
+<div class="row" style="margin-top:12px"><button id="save">Save update</button><button id="pl" class="ghost">Print label</button><button id="del" class="danger">Delete shipment</button><button id="close" class="ghost">Close</button></div>
+<div id="eerr" class="err"></div><div id="eok" class="ok"></div><div id="label" hidden></div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const ST={"Booked":10,"Picked up":25,"In transit":55,"At customs":70,"Out for delivery":90,"Delivered":100,"Delayed":null};
+Object.keys(ST).forEach(s=>$("es").add(new Option(s,s)));
+const SV={"Economy":[60,.30,"6-8 days"],"Express":[95,.55,"3-4 days"],"Priority":[140,.85,"1-2 days"]};
+["qs","ns"].forEach(i=>Object.keys(SV).forEach(s=>$(i).add(new Option(s,s))));
+const price=(sv,w,intl)=>Math.round(SV[sv][0]+SV[sv][1]*w+(intl?80:0));
+const fd=d=>d?new Date(d+"T12:00:00").toLocaleDateString([], {weekday:"short",month:"short",day:"numeric",year:"numeric"}):"To be confirmed";
+const C39={"0":"nnnwwnwnn","1":"wnnwnnnnw","2":"nnwwnnnnw","3":"wnwwnnnnn","4":"nnnwwnnnw","5":"wnnwwnnnn","6":"nnwwwnnnn","7":"nnnwnnwnw","8":"wnnwnnwnn","9":"nnwwnnwnn","M":"wnwnnnnwn","F":"nnwnwwnnn","-":"nwnnnnwnw","*":"nwnnwnwnn"};
+function bars(t){let x=0,r="";("*"+t+"*").split("").forEach(c=>{(C39[c]||C39["-"]).split("").forEach((e,i)=>{const w=e==="w"?3:1;if(i%2===0)r+='<rect x="'+x+'" y="0" width="'+w+'" height="50" fill="#000"/>';x+=w});x+=1});return '<svg viewBox="0 0 '+x+' 50" style="width:100%;max-width:340px;height:70px" preserveAspectRatio="none" role="img" aria-label="Barcode">'+r+'</svg>'}
+const recv=()=>{$("rl").hidden=$("es").value!=="Delivered"};$("es").onchange=recv;
+$("qb").onclick=()=>{const w=+$("qw").value;if(!(w>=1)){$("qr").textContent="Enter a weight of at least 1 lb.";return}const v=$("qs").value;$("qr").textContent="$"+price(v,w,+$("qi").value).toLocaleString()+" – delivery in "+SV[v][2]};
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt=t=>new Date(t).toLocaleString([], {month:"short",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit"});
+const cls=s=>s==="Delivered"?" done":s==="Delayed"?" late":"";
+let db=null,isAdmin=false,all=[],sel=null,unsub=null;
+
+const stars=n=>"★".repeat(n)+"☆".repeat(5-n);
+function show(v){$("vSite").hidden=v!=="T";$("vAdmin").hidden=v!=="A";window.scrollTo(0,0)}
+document.querySelectorAll("header.top a").forEach(a=>a.onclick=()=>{if($("vSite").hidden)show("T")});
+$("staff").onclick=e=>{e.preventDefault();show("A");refreshAuth()};
+const api=async(m,u,b)=>{const r=await fetch(u,{method:m,headers:b?{"Content-Type":"application/json"}:{},body:b?JSON.stringify(b):undefined,credentials:"same-origin"});let j={};try{j=await r.json()}catch(e){}if(!r.ok)throw Object.assign(new Error(j.error||"Something went wrong."),{status:r.status});return j};
+function rateHTML(s){
+  if(s.status!=="Delivered")return"";
+  if(s.rating)return'<div class="rate"><strong>Your rating</strong> <span style="color:var(--accent)">'+stars(s.rating.stars)+'</span></div>';
+  return'<div class="rate" data-id="'+esc(s.id)+'" data-v="0"><strong>Rate your delivery</strong><div>'+[1,2,3,4,5].map(n=>'<button type="button" class="star" data-v="'+n+'" aria-label="'+n+(n>1?' stars':' star')+'">★</button>').join("")+'</div><div class="grid" style="margin-top:8px"><label>First name (optional)<input class="rn" maxlength="30" style="text-transform:none"></label><label>Comment (optional)<input class="rc" maxlength="500" style="text-transform:none"></label></div><div class="row" style="margin-top:10px;align-items:center"><button type="button" class="rsend">Send rating</button><span class="rmsg err" style="margin:0"></span></div></div>'}
+$("res").onclick=async e=>{const t=e.target,c=t.closest(".rate");if(!c||!c.dataset.id)return;
+  if(t.classList.contains("star")){c.dataset.v=t.dataset.v;c.querySelectorAll(".star").forEach(x=>x.classList.toggle("on",+x.dataset.v<=+t.dataset.v))}
+  if(t.classList.contains("rsend")){const v=+c.dataset.v,m=c.querySelector(".rmsg");if(!v){m.textContent="Choose 1 to 5 stars.";return}
+    try{await api("POST","/api/rate",{id:c.dataset.id,stars:v,name:c.querySelector(".rn").value,comment:c.querySelector(".rc").value});c.innerHTML="<strong>Thank you for your feedback.</strong>";loadReviews()}catch(er){m.textContent=er.message}}};
+async function loadReviews(){try{const j=await api("GET","/api/reviews");$("ravg").textContent=j.count?j.avg.toFixed(1)+" out of 5, from "+j.count+" delivery rating"+(j.count>1?"s":""):"";
+  $("rgrid").innerHTML=j.reviews.length?j.reviews.map(r=>'<div class="rev"><div style="color:var(--accent);font-size:20px">'+stars(r.stars)+'</div>'+(r.comment?'<p>'+esc(r.comment)+'</p>':'')+'<small class="mute">'+esc(r.name||"A customer")+'</small></div>').join(""):'<p class="mute">Reviews will appear here once customers rate their deliveries.</p>'}catch(e){}}
+function renderRatings(){const r=all.filter(x=>x.rating);
+  $("rsum").textContent=r.length?(r.reduce((t,x)=>t+x.rating.stars,0)/r.length).toFixed(1)+" out of 5, from "+r.length+" rating"+(r.length>1?"s":""):"No ratings yet. Customers can rate a shipment once it is marked Delivered.";
+  $("rlist").innerHTML=r.map(x=>'<div style="padding:10px 0;border-top:1px solid var(--line)"><strong>'+esc(x.id)+'</strong> <span style="color:var(--accent)">'+stars(x.rating.stars)+'</span><div>'+esc(x.rating.comment||"(no comment)")+'</div><small class="mute">'+esc(x.rating.name||"Anonymous")+'</small><div style="margin-top:6px"><label style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" style="width:auto" data-pub="'+esc(x.id)+'"'+(x.rating.published?" checked":"")+'> Show on homepage</label></div></div>').join("");
+  document.querySelectorAll("[data-pub]").forEach(c=>c.onchange=async()=>{try{await api("POST","/api/shipments/"+c.dataset.pub+"/publish",{published:c.checked})}catch(e){c.checked=!c.checked}})}
+
+function card(s){
+  const h=(s.history||[]).slice().reverse();
+  return '<div class="card"><div class="row" style="justify-content:space-between;align-items:flex-start"><div><h2>'+esc(s.id)+'</h2><div class="mute">'+esc(s.origin)+' to '+esc(s.destination)+'</div></div><span class="badge'+cls(s.status)+'">'+esc(s.status)+'</span></div>'
+  +'<div class="bar"><span style="width:'+(s.progress||0)+'%"></span></div>'
+  +'<div class="facts"><div><small>Latest location</small><strong>'+esc(s.location||"Not yet reported")+'</strong></div><div><small>Destination</small><strong>'+esc(s.destination)+'</strong></div><div><small>Cargo</small><strong>'+esc(s.cargo||"-")+'</strong></div><div><small>'+(s.pod?'Delivered':'Estimated delivery')+'</small><strong>'+(s.pod?fmt(s.pod.t):fd(s.eta))+'</strong></div><div><small>Service</small><strong>'+esc(s.service||"Standard")+'</strong></div>'+(s.pod?'<div><small>Received by</small><strong>'+esc(s.pod.name)+'</strong></div>':'')+'<div><small>Last updated</small><strong>'+fmt(s.updated)+'</strong></div></div>'
+  +'<ol>'+h.map(e=>'<li>'+esc(e.status)+(e.location?' – '+esc(e.location):'')+'<small>'+fmt(e.t)+(e.note?' · '+esc(e.note):'')+'</small></li>').join("")+'</ol>'+rateHTML(s)+'</div>';
+}
+async function track(){
+  const ids=[...new Set($("tid").value.toUpperCase().split(/[\s,;]+/).filter(Boolean))].slice(0,20);$("terr").textContent="";
+  if(!ids.length){$("terr").textContent="Enter a tracking number.";return}
+  try{const j=await api("GET","/api/track?ids="+encodeURIComponent(ids.join(",")));
+    if(j.missing.length)$("terr").textContent="Not found: "+j.missing.join(", ")+". Check the number and try again.";
+    $("res").hidden=!j.found.length;$("res").innerHTML=j.found.map(card).join("")}
+  catch(e){$("res").hidden=true;$("terr").textContent="We couldn't load that shipment. Try again in a moment."}
+}
+$("go").onclick=track;$("tid").onkeydown=e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();track()}};
+
+function renderList(){
+  $("empty").hidden=all.length>0;renderRatings();
+  $("list").innerHTML=all.map(s=>'<tr class="pick" data-id="'+esc(s.id)+'"><td><strong>'+esc(s.id)+'</strong></td><td>'+esc(s.customer)+'</td><td>'+esc(s.origin)+' to '+esc(s.destination)+'</td><td><span class="badge'+cls(s.status)+'">'+esc(s.status)+'</span></td></tr>').join("");
+  document.querySelectorAll("tr.pick").forEach(r=>r.onclick=()=>openEdit(r.dataset.id));
+  if(sel&&!all.find(s=>s.id===sel))$("edit").hidden=true;
+}
+function openEdit(id){
+  const s=all.find(x=>x.id===id);if(!s)return;sel=id;
+  $("eh").textContent="Update "+id;$("es").value=s.status;$("el").value=s.location||"";$("ed").value=s.destination;$("en").value="";$("ee").value=s.eta||"";$("er").value=s.pod?s.pod.name:"";$("label").hidden=true;$("em").value=s.email||"";$("sm").checked=true;recv();
+  $("eerr").textContent="";$("eok").textContent="";$("edit").hidden=false;$("edit").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+const mailNote=r=>({sent:" Customer emailed.",failed:" The email could not be sent.",not_configured:" Email not sent because email alerts are off.",no_email:" No customer email is saved for this shipment."}[r]||"");
+async function load(){all=(await api("GET","/api/shipments")).shipments;renderList()}
+function gate(on){isAdmin=on;$("login").hidden=on;$("adm").hidden=!on}
+async function refreshAuth(){try{const j=await api("GET","/api/me");gate(j.admin);$("mnote").hidden=!j.admin||j.email;if(j.admin)await load()}catch(e){gate(false)}}
+const guard=(e,el)=>{if(e.status===401)gate(false);else $(el).textContent=e.message};
+$("li").onclick=async()=>{$("lerr").textContent="";try{await api("POST","/api/login",{password:$("pw").value});$("pw").value="";await refreshAuth()}catch(e){$("lerr").textContent=e.message}};
+$("pw").onkeydown=e=>{if(e.key==="Enter")$("li").click()};
+$("lo").onclick=async()=>{try{await api("POST","/api/logout",{})}catch(e){}gate(false);all=[];$("edit").hidden=true};
+$("add").onclick=async()=>{$("aerr").textContent="";$("aok").textContent="";
+  try{const j=await api("POST","/api/shipments",{customer:$("nc").value,cargo:$("ng").value,origin:$("no").value,destination:$("nd").value,weight:+$("nw").value,service:$("ns").value,eta:$("ne").value,email:$("nm").value});
+    $("aok").textContent="Created "+j.shipment.id+". Give this number to your customer."+mailNote(j.emailed);["nc","ng","no","nd","ne","nm"].forEach(x=>$(x).value="");await load()}catch(e){guard(e,"aerr")}};
+$("save").onclick=async()=>{$("eerr").textContent="";$("eok").textContent="";
+  try{const j=await api("PUT","/api/shipments/"+sel,{status:$("es").value,location:$("el").value,destination:$("ed").value,note:$("en").value,eta:$("ee").value,receivedBy:$("er").value,email:$("em").value,notify:$("sm").checked});$("eok").textContent="Saved. Customers now see this update."+mailNote(j.emailed);$("en").value="";await load()}catch(e){guard(e,"eerr")}};
+$("del").onclick=async()=>{if(!sel||!confirm("Delete "+sel+"? This can't be undone."))return;try{await api("DELETE","/api/shipments/"+sel);$("edit").hidden=true;sel=null;await load()}catch(e){guard(e,"eerr")}};
+$("pl").onclick=()=>{const s=all.find(x=>x.id===sel);if(!s)return;const L=$("label");L.hidden=false;L.className="lbl";L.innerHTML='<h2>'+esc(s.id)+'</h2><p><strong>From:</strong> '+esc(s.origin)+'<br><strong>To:</strong> '+esc(s.destination)+'<br><strong>Customer:</strong> '+esc(s.customer)+'<br><strong>Cargo:</strong> '+esc(s.cargo||"-")+'<br><strong>Service:</strong> '+esc(s.service||"-")+', '+(s.weight||"-")+' lb</p>'+bars(s.id)+'<p>'+esc(s.id)+'</p>';L.scrollIntoView({behavior:"smooth",block:"nearest"});try{window.print()}catch(e){}};
+$("close").onclick=()=>{$("edit").hidden=true;sel=null};
+
+loadReviews();
+{const t=new URLSearchParams(location.search).get("t");if(t){$("tid").value=t;track();$("track").scrollIntoView()}}
+if(location.hash==="#staff"){show("A");refreshAuth()}
+</script>
+</body>
+</html>
